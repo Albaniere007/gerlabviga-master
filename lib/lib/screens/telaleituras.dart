@@ -2,7 +2,7 @@
 
 import 'dart:math';
 
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gerlabviga/lib/screens/telaresultado.dart';
@@ -21,12 +21,43 @@ class _errovigaState extends State<erroviga> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Text(
-          'Mínimo quatro leituras',
-          style: TextStyle(fontSize: 24),
+        child: Column(
+          children: [
+            Text(
+              'Mínimo quatro leituras',
+              style: TextStyle(fontSize: 24),
+            ),
+            
+            Padding(
+              padding: const EdgeInsets.all(64.0),
+              child: RaisedButton(onPressed:(){
+
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  Leituras()),
+                );
+              },
+
+                child: Text('Voltar às leituras'),
+
+
+
+
+
+              ),
+            )
+          ],
         ),
+        
+        
       ),
+      
+      
+        
     );
+
+    MaterialPageRoute;
   }
 }
 
@@ -105,7 +136,7 @@ class _LeiturasState extends State<Leituras> {
     String leitura30;
 
     setState(() {
-      constantedaviga = int.tryParse(_constviga.text);
+      constantedaviga = double.tryParse(_constviga.text);
       leitura1 = _leitura1.text;
       leitura2 = _leitura2.text;
       leitura3 = _leitura3.text;
@@ -249,24 +280,27 @@ class _LeiturasState extends State<Leituras> {
 
         int? unidade = 0;
 
-        void erro() {
-          setState(() => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => erroviga(),
-                ),
-              ));
-        }
 
-        if (listaleiturasString.length <= 3) {
-          erro();
-        }
 
         for (stg; stg < listaleiturasString.length; stg++) {
-          if (listaleiturasString[stg] != '') {
+           if (listaleiturasString[stg] != '') {
             unidade = int.tryParse(listaleiturasString[stg]);
             listaLeituras.add(unidade);
           }
         }
+
+        if (listaLeituras.length <= 3) {
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => erroviga(),
+            ),
+          );
+
+        }
+
+
 
         for (numero; numero < listaLeituras.length; numero++) {
           leiturasub = (500 - listaLeituras[numero]) * constantedaviga;
@@ -302,9 +336,16 @@ class _LeiturasState extends State<Leituras> {
         return listaResultado;
       }
 
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Resultados(vigaResult())));
+
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Resultados(vigaResult())));
+
+
+
+
+
     });
+
   }
 
   @override
@@ -323,7 +364,7 @@ class _LeiturasState extends State<Leituras> {
               ),
               style: TextStyle(fontSize: 16.0),
               keyboardType: TextInputType.number,
-              maxLength: 4,
+              maxLength: 5,
             ),
             TextField(
                 controller: _leitura1,

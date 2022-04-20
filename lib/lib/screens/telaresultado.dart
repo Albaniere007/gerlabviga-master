@@ -32,7 +32,7 @@ class _ResultadosState extends State<Resultados> {
             child: ListView(
               children: [
                 Text(
-                  'Leituras válidas: ${widget.listaResultados[0]}',
+                  'Leituras válidas: ${(widget.listaResultados[0])}',
                   style: TextStyle(
                     fontSize: 24,
                   ),
@@ -71,5 +71,6 @@ class _ResultadosState extends State<Resultados> {
             ),
           ),
         ));
+
   }
 }
