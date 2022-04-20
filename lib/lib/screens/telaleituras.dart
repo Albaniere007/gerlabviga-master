@@ -17,42 +17,43 @@ class _errovigaState extends State<erroviga> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tela de erro'),
+        title: Text('Voltar ao ensaio'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            Text(
-              'Mínimo quatro leituras',
-              style: TextStyle(fontSize: 24),
+      body: Column(
+        children: [
+          Text(
+            'Mínimo quatro leituras',
+            style: TextStyle(fontSize: 24,),
+          ),
+
+
+
+
+
+
+          Padding(
+            padding: const EdgeInsets.all(64.0),
+            child: RaisedButton(onPressed:(){
+
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  Leituras()),
+              );
+            },
+
+              child: Text('Novo ensaio'),
+
+
+
+
+
             ),
-            
-            Padding(
-              padding: const EdgeInsets.all(64.0),
-              child: RaisedButton(onPressed:(){
+          ),
+        ],
 
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  Leituras()),
-                );
-              },
-
-                child: Text('Voltar às leituras'),
-
-
-
-
-
-              ),
-            )
-          ],
-        ),
-        
-        
       ),
-      
+
       
         
     );
